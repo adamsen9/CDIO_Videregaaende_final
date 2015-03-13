@@ -18,11 +18,11 @@ public class Function implements IFunction {
 	@Override
 	public String interpret(String input) {
 		if (input.equals("S\r\n")) {
-			// send vægt tilbage (S S)
-			return "S S"getWeight();
+			// send vï¿½gt tilbage (S S)
+			return "S S" + getWeight();
 		}
 
-		else if (input.equals("T\r\n")){ // Tarér vægt
+		else if (input.equals("T\r\n")){ // Tarï¿½r vï¿½gt
 			tareWeight();
 			//opdater menu?
 		}
