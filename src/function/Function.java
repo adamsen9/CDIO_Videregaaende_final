@@ -18,7 +18,7 @@ public class Function implements IFunction {
 	@Override
 	public String interpret(String input) {
 		if (input.equals("S\r\n")) {
-			// send vï¿½gt tilbage (S S)
+			// send vægt tilbage (S S)
 			return "S S" + getWeight();
 		}
 

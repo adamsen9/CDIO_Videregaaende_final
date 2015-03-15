@@ -15,6 +15,8 @@ public class Main {
 		Listener list = new Listener(func);
 		IBoundary menu = new Boundary(func);
 		func.setBoundary(menu);
+		
+		list.run();
 	}
 
 }
