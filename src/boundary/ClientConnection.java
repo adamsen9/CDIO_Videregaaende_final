@@ -37,8 +37,9 @@ public class ClientConnection implements Runnable {
 			//Loop reading lines from the client which are processed
 			while((input = in.readLine()) != null) {
 				if(input.equals("Q")) {
-					out.println("Servern lukker IKKE ned, godt forsøgt!");
+					out.println("Servern lukker IKKE ned, godt forsï¿½gt!");
 					System.out.print("Programmet termineres");
+					client.close();
 					//System.exit(1);
 				}
 				System.out.println("Fik en besked:" + input);
@@ -47,11 +48,9 @@ public class ClientConnection implements Runnable {
 				
 				out.println("Server: " + response);
 			}
+			client.close();
 		} catch (IOException e) {
 			System.err.println(e);
 		}
-		
-		System.out.println("HEJ");
 	}
-	
 }
