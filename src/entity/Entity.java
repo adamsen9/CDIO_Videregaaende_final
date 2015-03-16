@@ -3,10 +3,13 @@ package entity;
 public class Entity implements IEntity {
 	private double brutto;
 	private double tara;
+	private boolean RM20;
 		
 	public Entity() {
 		brutto = 0.0;
 		tara = 0.0;
+		RM20 = false;
+		
 	}
 
 	/* (non-Javadoc)
@@ -42,5 +45,15 @@ public class Entity implements IEntity {
 	@Override
 	public void setTara(double tara) {
 		this.tara = tara;
+	}
+	
+	@Override
+	public boolean getRM20() {
+		return RM20;
+	}
+
+	@Override
+	public void setRM20(boolean RM20) {
+		this.RM20 = RM20;
 	}
 }

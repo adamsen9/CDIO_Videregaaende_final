@@ -1,17 +1,17 @@
 package function;
 
-import boundary.IBoundary;
+import boundary.IMenu;
 import entity.IEntity;
 
 public class Function implements IFunction {
-	IBoundary menu;
+	IMenu menu;
 	IEntity data;
 	
 	public Function(IEntity data) {
 		this.data = data;
 	}
 	
-	public void setBoundary(IBoundary menu) {
+	public void setBoundary(IMenu menu) {
 		this.menu = menu;
 	}
 	
@@ -20,9 +20,11 @@ public class Function implements IFunction {
 		if (input.equals("S\r\n")) {
 			// send vægt tilbage (S S)
 			return "S S" + getWeight();
-		}
-
-		else if (input.equals("T\r\n")){ // Tarï¿½r vï¿½gt
+			
+		} else if(data.getRM20()) {
+			return "RM20 command in process, wait for it to end";
+			
+		} else if (input.equals("T\r\n")){ // Tarï¿½r vï¿½gt
 			tareWeight();
 			//opdater menu?
 		}
