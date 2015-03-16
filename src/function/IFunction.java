@@ -5,7 +5,9 @@ import boundary.IMenu;
 public interface IFunction {
 	void setBoundary(IMenu menu);
 	String interpret(String input);
-	String getWeight();
+	String getWeightString();
+	Double getWeight();
+	boolean getRM20();
 	void tareWeight();
 	void displayMsg(String msg);
 	void displayWeight();

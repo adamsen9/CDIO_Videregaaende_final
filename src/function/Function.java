@@ -1,6 +1,7 @@
 package function;
 
 import boundary.IMenu;
+import java.math.*;
 import entity.IEntity;
 
 public class Function implements IFunction {
@@ -17,38 +18,43 @@ public class Function implements IFunction {
 	
 	@Override
 	public String interpret(String input) {
-		if (input.equals("S\r\n")) {
-			// send v�gt tilbage (S S)
-			return "S S" + getWeight();
+		if (input.equals("S")) {
+			// send vægt tilbage (S S)
+			if(getWeight() < 0) {
+				return "S S     " + String.format("%.3g",getWeight()) + " kg";
+			}
+			return "S S      " + String.format("%.3g",getWeight()) + " kg";
 			
-		} else if(data.getRM20()) {
+		} else if(getRM20()) {
 			return "RM20 command in process, wait for it to end";
 			
-		} else if (input.equals("T\r\n")){ // Tar�r v�gt
+		} else if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
+			return "T S";
 			//opdater menu?
-		}
-		
-		else if (input.startsWith("D ")) {
-//			input.substring(3, input.indexOf("\r")-1);
+		} else if (input.startsWith("D ")) {
+			System.out.print(input.substring(3, input.indexOf("\r")-1));
 //			opdater menu, vis besked...
-		}
-
-		else if (input.startsWith("B")){
+		} else if (input.startsWith("B")){
+			//HUSK VÆGT ALDRIG STIGER OVER 6KG selv hvis man Tara. Da vægten jo ikke forsvinder
 //			String temp=input.substring(2,input.length());
 //			brutto=Double.parseDouble(temp);
 //			printMenu();
 //			outStream.writeBytes("DB"+"\r\n");
-		}
-
-		else if ((input.startsWith("DW"))){
+		} else if ((input.startsWith("DW "))){
+			//Nulstiller tekst på vægten, viser vejeresultat igen
+			//menu.removeText();
 			System.out.println("Program stoppet, Q modtaget paa com port");
+			
+		} else {
+			
+			return "ES";
 		}
 		return null;
 	}
 
 	@Override
-	public String getWeight() {
+	public String getWeightString() {
 		return Double.toString(data.getBrutto()-data.getTara());
 	}
 
@@ -90,4 +96,13 @@ public class Function implements IFunction {
 		data.setTara(0.0);
 	}
 
+	@Override
+	public Double getWeight() {
+		return data.getBrutto()-data.getTara();
+	}
+
+	@Override
+	public boolean getRM20() {
+		return data.getRM20();
+	}
 }

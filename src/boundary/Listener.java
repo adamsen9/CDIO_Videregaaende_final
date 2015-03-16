@@ -19,7 +19,7 @@ public class Listener implements Runnable {
 	    try {
 	        server = new ServerSocket(port);
 	    } catch (IOException e) {
-	        System.err.println("Kunne ikke høre på port: " + port);
+	        System.err.println("Kunne ikke hï¿½re pï¿½ port: " + port);
 	        System.err.println(e);
 	        System.exit(1);
 	    }

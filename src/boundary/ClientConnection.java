@@ -38,8 +38,8 @@ public class ClientConnection implements Runnable {
 			while((input = in.readLine()) != null) {
 				if(input.equals("Q")) {
 					out.println("Servern lukker IKKE ned, godt fors�gt!\r");
-					System.out.print("Programmet termineres");
-					client.close();
+					System.out.print(" forsøgte at lukke serveren");
+					//System.out.print("Programmet termineres");
 					//System.exit(1);
 				}
 				System.out.println("Fik en besked:" + input);
@@ -48,7 +48,6 @@ public class ClientConnection implements Runnable {
 				
 				out.println("Server: " + response + "\r");
 			}
-			client.close();
 		} catch (IOException e) {
 			System.err.println(e);
 		}
