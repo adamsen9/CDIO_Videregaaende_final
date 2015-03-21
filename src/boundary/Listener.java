@@ -7,10 +7,11 @@ import java.net.*;
 
 public class Listener implements Runnable {
 	IFunction func;
-	private static int port = 8000;
+	private static int port;
 
-	public Listener(IFunction func) {
+	public Listener(IFunction func, int port) {
 		this.func = func;
+		this.port = port;
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class Listener implements Runnable {
 	        System.err.println(e);
 	        System.exit(1);
 	    }
-	    
+	    System.out.println("Lytter nu på forbindelser på port: "+port);
 	    Socket client = null;
 	    while(true) {
 	    	try {
