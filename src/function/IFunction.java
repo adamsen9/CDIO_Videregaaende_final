@@ -18,4 +18,7 @@ public interface IFunction {
 	String getText();
 	String getSecText();
 	double getBrutto();
+	double convert(String input);
+	public boolean getInputRunning();
+	public void setInputRunning(boolean state);
 }

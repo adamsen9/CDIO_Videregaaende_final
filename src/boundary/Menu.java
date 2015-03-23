@@ -3,17 +3,21 @@ package boundary;
 import function.IFunction;
 
 public class Menu implements IMenu, Runnable {
+	
+
 	String mainDisplay = "";
 	String secDisplay = "";
 	IFunction func;
-	String brutto = "0.0";
+	Double brutto = 0.000;
 	
 	public Menu(IFunction func) {
 		this.func = func;
+
 	}
 
 	@Override
 	public void run() {
+	InputThread input = new InputThread(func);
 		if(func.getRM20() == true) {
 			
 		} else if(func.getRM20() == false) {
@@ -22,7 +26,9 @@ public class Menu implements IMenu, Runnable {
 				System.out.print("Swag Vægt      ");
 				System.out.println("");
 				System.out.println("===========================");
-				System.out.println("Brutto: " + brutto);
+				System.out.println("Brutto: " + func.getBrutto());
+				input.start();
+
 				
 				while(true) {
 					if((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay))) {
@@ -33,14 +39,25 @@ public class Menu implements IMenu, Runnable {
 						System.out.println("===========================");
 						System.out.println("     " + mainDisplay);
 						System.out.println(secDisplay);
-					} else if(!brutto.equals(func.getWeightString())) {
-						brutto = func.getWeightString();
+
+					} else if(func.getBrutto() != brutto) {
+						brutto = func.getBrutto();
 						System.out.println("===========================");
 						System.out.println("Swag Vægt");
 						System.out.println("===========================");
-						System.out.println("     " + brutto + " kg");
-						System.out.println(secDisplay);
+						System.out.println("     " + func.getBrutto() + " kg");
 					}
+					
+					System.out.println(func.getInputRunning());
+					if(func.getInputRunning()) {
+						
+					} else {
+						System.out.print("Bøh");
+						func.setInputRunning(true);
+						input = new InputThread(func);
+						input.start();
+					}
+					
 					Thread.sleep(100);	
 				}
 			} catch (InterruptedException e) {

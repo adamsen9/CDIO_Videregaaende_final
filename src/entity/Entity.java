@@ -1,14 +1,13 @@
 package entity;
 
 public class Entity implements IEntity {
-	private double brutto;
+	private double brutto = 0.000;
 	private double tara;
 	private boolean RM20;
 	private String mainDisplay = "";
 	private String secDisplay = "";
 		
 	public Entity() {
-		brutto = 0.000;
 		tara = 0.000;
 		RM20 = false;
 		

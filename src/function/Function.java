@@ -9,6 +9,7 @@ import entity.IEntity;
 public class Function implements IFunction {
 	IMenu menu;
 	IEntity data;
+	private boolean inputRunning = false;
 	
 	public Function(IEntity data) {
 		this.data = data;
@@ -38,19 +39,6 @@ public class Function implements IFunction {
 			displayMsg(input.substring(3, input.lastIndexOf("\"")));
 			return "D A";
 //			opdater menu, vis besked...
-		} else if (input.startsWith("B ")){
-			//HUSK VÆGT ALDRIG STIGER OVER 6KG selv hvis man Tara. Da vægten jo ikke forsvinder
-			System.out.println("Omdannelse: " + Double.parseDouble(input.substring(3,input.lastIndexOf("k"))));
-			
-			System.out.println(input.substring(2,input.lastIndexOf("k")-1));
-			if( Double.parseDouble(input.substring(2,input.lastIndexOf("k")-1)) + getBrutto() > 6) {
-				return "ES";
-			} else {
-				
-			}
-//			brutto=Double.parseDouble(temp);
-//			printMenu();
-//			outStream.writeBytes("DB"+"\r\n");
 			
 		} else if (input.equals("DW")){
 			//Nulstiller tekst på vægten, viser vejeresultat igen
@@ -86,7 +74,6 @@ public class Function implements IFunction {
 
 	@Override
 	public void displayWeight() {
-		
 	}
 
 	@Override
@@ -137,5 +124,18 @@ public class Function implements IFunction {
 	@Override
 	public double getBrutto(){
 		return data.getBrutto();
+	}
+	
+	@Override
+	public double convert(String input){
+		return Double.parseDouble(input) + 1;
+	}
+	@Override
+	public boolean getInputRunning(){
+		return inputRunning;
+	}
+	@Override
+	public void setInputRunning(boolean state){
+		inputRunning = state;
 	}
 }
