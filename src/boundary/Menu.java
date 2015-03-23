@@ -28,7 +28,6 @@ public class Menu implements IMenu, Runnable {
 				System.out.println("===========================");
 				System.out.println("Brutto: " + func.getBrutto());
 				input.start();
-
 				
 				while(true) {
 					if((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay))) {
@@ -46,16 +45,6 @@ public class Menu implements IMenu, Runnable {
 						System.out.println("Swag Vægt");
 						System.out.println("===========================");
 						System.out.println("     " + func.getBrutto() + " kg");
-					}
-					
-					System.out.println(func.getInputRunning());
-					if(func.getInputRunning()) {
-						
-					} else {
-						System.out.print("Bøh");
-						func.setInputRunning(true);
-						input = new InputThread(func);
-						input.start();
 					}
 					
 					Thread.sleep(100);	
