@@ -36,12 +36,7 @@ public class ClientConnection implements Runnable {
 		try {
 			//Loop reading lines from the client which are processed
 			while((input = in.readLine()) != null) {
-				if(input.equals("Q")) {
-					out.println("Servern lukker IKKE ned, godt fors�gt!\r");
-					System.out.print(" forsøgte at lukke serveren");
-					//System.out.print("Programmet termineres");
-					//System.exit(1);
-				}
+
 				System.out.println("Fik en besked:" + input);
 				response = func.interpret(input);
 				System.out.println("Svarer: " + response);

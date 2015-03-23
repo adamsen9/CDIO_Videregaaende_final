@@ -28,32 +28,45 @@ public class Function implements IFunction {
 			return "S S      " + String.format("%.3g",getWeight()) + " kg";
 			
 		} else if(getRM20()) {
-			return "RM20 command in process, wait for it to end";
+			return "RM20 mode engaged, wait for closure";
 			
 		} else if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
 			return "T S";
 			//opdater menu?
 		} else if (input.startsWith("D ")) {
-			setText(input.substring(3, input.lastIndexOf("\"")));
-			return "Godt robert";
+			displayMsg(input.substring(3, input.lastIndexOf("\"")));
+			return "D A";
 //			opdater menu, vis besked...
-		} else if (input.startsWith("B")){
+		} else if (input.startsWith("B ")){
 			//HUSK VÆGT ALDRIG STIGER OVER 6KG selv hvis man Tara. Da vægten jo ikke forsvinder
-//			String temp=input.substring(2,input.length());
+			System.out.println("Omdannelse: " + Double.parseDouble(input.substring(3,input.lastIndexOf("k"))));
+			
+			System.out.println(input.substring(2,input.lastIndexOf("k")-1));
+			if( Double.parseDouble(input.substring(2,input.lastIndexOf("k")-1)) + getBrutto() > 6) {
+				return "ES";
+			} else {
+				
+			}
 //			brutto=Double.parseDouble(temp);
 //			printMenu();
 //			outStream.writeBytes("DB"+"\r\n");
-		} else if ((input.startsWith("DW "))){
+			
+		} else if (input.equals("DW")){
 			//Nulstiller tekst på vægten, viser vejeresultat igen
-			//menu.removeText();
-			System.out.println("Program stoppet, Q modtaget paa com port");
+			displayMsg("");
+			return "DW A";
 			
-		} else {
+		} else if (input.startsWith("RM20 ")){
 			
-			return "ES";
+		} else if(input.startsWith("P111 ")){
+			displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
+			return "P111 A";
+		} else if(input.equals("Q")){
+
+				
 		}
-		return null;
+		return "ES";
 	}
 
 	@Override
@@ -68,8 +81,7 @@ public class Function implements IFunction {
 
 	@Override
 	public void displayMsg(String msg) {
-		// TODO Auto-generated method stub
-		
+		data.setText(msg);
 	}
 
 	@Override
@@ -79,7 +91,7 @@ public class Function implements IFunction {
 
 	@Override
 	public void displaySecMsg(String msg) {
-		
+		data.setSecDisplay(msg);
 	}
 
 	@Override
@@ -90,6 +102,8 @@ public class Function implements IFunction {
 
 	@Override
 	public void quit() {
+		System.out.println("Systemet lukker");
+		System.exit(1);
 		//luk alle connections
 	}
 
@@ -115,7 +129,13 @@ public class Function implements IFunction {
 	}
 
 	@Override
-	public void setText(String text) {
-		data.setText(text);
+	public String getSecText() {
+		// TODO Auto-generated method stub
+		return data.getSecDisplay();
+	}
+	
+	@Override
+	public double getBrutto(){
+		return data.getBrutto();
 	}
 }

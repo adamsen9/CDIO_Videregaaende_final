@@ -3,8 +3,10 @@ package boundary;
 import function.IFunction;
 
 public class Menu implements IMenu, Runnable {
-	String text = "";
+	String mainDisplay = "";
+	String secDisplay = "";
 	IFunction func;
+	String brutto = "0.0";
 	
 	public Menu(IFunction func) {
 		this.func = func;
@@ -12,32 +14,40 @@ public class Menu implements IMenu, Runnable {
 
 	@Override
 	public void run() {
-
+		if(func.getRM20() == true) {
+			
+		} else if(func.getRM20() == false) {
 			try {
 				System.out.println("===========================");
 				System.out.print("Swag Vægt      ");
-				System.out.println(text);
+				System.out.println("");
 				System.out.println("===========================");
-				System.out.println("Brutto: " + func.getWeightString());
+				System.out.println("Brutto: " + brutto);
 				
 				while(true) {
-					if(!func.getText().equals("") && !func.getText().equals(text)) {
-						this.text = func.getText();
+					if((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay))) {
+						mainDisplay = func.getText();
+						secDisplay = func.getSecText();
 						System.out.println("===========================");
-						System.out.print("Swag Vægt      ");
-						System.out.print(text);
+						System.out.println("Swag Vægt");
 						System.out.println("===========================");
-						System.out.println("Tekst her");
-						System.out.println("Brutto: " + func.getWeightString());
-					} else {
-						Thread.sleep(100);	
+						System.out.println("     " + mainDisplay);
+						System.out.println(secDisplay);
+					} else if(!brutto.equals(func.getWeightString())) {
+						brutto = func.getWeightString();
+						System.out.println("===========================");
+						System.out.println("Swag Vægt");
+						System.out.println("===========================");
+						System.out.println("     " + brutto + " kg");
+						System.out.println(secDisplay);
 					}
+					Thread.sleep(100);	
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
 		}
-		System.out.print("");
 		
 		// TODO Auto-generated method stub
 			}

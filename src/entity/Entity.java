@@ -4,11 +4,12 @@ public class Entity implements IEntity {
 	private double brutto;
 	private double tara;
 	private boolean RM20;
-	private String text = "";
+	private String mainDisplay = "";
+	private String secDisplay = "";
 		
 	public Entity() {
-		brutto = 0.0;
-		tara = 0.0;
+		brutto = 0.000;
+		tara = 0.000;
 		RM20 = false;
 		
 	}
@@ -60,12 +61,20 @@ public class Entity implements IEntity {
 
 	@Override
 	public void setText(String text) {
-		this.text = text;
+		mainDisplay = text;
 		
 	}
 
 	@Override
 	public String getText() {
-		return text;
+		return mainDisplay;
+	}
+
+	public String getSecDisplay() {
+		return secDisplay;
+	}
+
+	public void setSecDisplay(String secDisplay) {
+		this.secDisplay = secDisplay;
 	}
 }

@@ -17,5 +17,9 @@ public interface IEntity {
 	public abstract void setText(String text);
 	
 	public abstract String getText();
+	
+	public abstract String getSecDisplay();
+	
+	public abstract void setSecDisplay(String secDisplay);
 
 }
