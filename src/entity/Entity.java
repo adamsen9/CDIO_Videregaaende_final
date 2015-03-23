@@ -4,6 +4,7 @@ public class Entity implements IEntity {
 	private double brutto;
 	private double tara;
 	private boolean RM20;
+	private String text = "";
 		
 	public Entity() {
 		brutto = 0.0;
@@ -55,5 +56,16 @@ public class Entity implements IEntity {
 	@Override
 	public void setRM20(boolean RM20) {
 		this.RM20 = RM20;
+	}
+
+	@Override
+	public void setText(String text) {
+		this.text = text;
+		
+	}
+
+	@Override
+	public String getText() {
+		return text;
 	}
 }

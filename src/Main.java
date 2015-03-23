@@ -27,7 +27,9 @@ public class Main {
 		IMenu menu = new Menu(func);
 		func.setBoundary(menu);
 		
-		list.run();
+
+		list.start();
+		menu.run();
 	}
 
 }

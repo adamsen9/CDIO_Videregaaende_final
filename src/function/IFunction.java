@@ -15,4 +15,7 @@ public interface IFunction {
 	void changeWeight(double weight);
 	void zeroWeight();
 	void quit();
+	
+	String getText();
+	void setText(String text);
 }

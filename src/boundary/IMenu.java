@@ -1,5 +1,8 @@
 package boundary;
 
-public interface IMenu {
+import function.IFunction;
 
+public interface IMenu extends Runnable {
+	
+	
 }

@@ -5,7 +5,7 @@ import function.IFunction;
 import java.io.*;
 import java.net.*;
 
-public class Listener implements Runnable {
+public class Listener extends Thread {
 	IFunction func;
 	private static int port;
 
@@ -20,11 +20,10 @@ public class Listener implements Runnable {
 	    try {
 	        server = new ServerSocket(port);
 	    } catch (IOException e) {
-	        System.err.println("Kunne ikke h�re p� port: " + port);
+	        System.err.println("Kunne ikke h�re p� port: " + port + " Husk at terminere tidligere program");
 	        System.err.println(e);
 	        System.exit(1);
 	    }
-	    System.out.println("Lytter nu på forbindelser på port: "+port);
 	    Socket client = null;
 	    while(true) {
 	    	try {

@@ -1,7 +1,9 @@
 package function;
 
 import boundary.IMenu;
+
 import java.math.*;
+
 import entity.IEntity;
 
 public class Function implements IFunction {
@@ -33,7 +35,8 @@ public class Function implements IFunction {
 			return "T S";
 			//opdater menu?
 		} else if (input.startsWith("D ")) {
-			System.out.print(input.substring(3, input.indexOf("\r")-1));
+			setText(input.substring(3, input.lastIndexOf("\"")));
+			return "Godt robert";
 //			opdater menu, vis besked...
 		} else if (input.startsWith("B")){
 			//HUSK VÆGT ALDRIG STIGER OVER 6KG selv hvis man Tara. Da vægten jo ikke forsvinder
@@ -104,5 +107,15 @@ public class Function implements IFunction {
 	@Override
 	public boolean getRM20() {
 		return data.getRM20();
+	}
+
+	@Override
+	public String getText() {
+		return data.getText();
+	}
+
+	@Override
+	public void setText(String text) {
+		data.setText(text);
 	}
 }
