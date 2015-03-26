@@ -8,6 +8,7 @@ public interface IFunction {
 	String getWeightString();
 	Double getWeight();
 	boolean getRM20();
+	void engageRM20(boolean state);
 	void tareWeight();
 	void displayMsg(String msg);
 	void displayWeight();
@@ -19,6 +20,5 @@ public interface IFunction {
 	String getSecText();
 	double getBrutto();
 	double convert(String input);
-	public boolean getInputRunning();
-	public void setInputRunning(boolean state);
+	public double getTara();
 }

@@ -9,6 +9,7 @@ public class Menu implements IMenu, Runnable {
 	String secDisplay = "";
 	IFunction func;
 	Double brutto = 0.000;
+	Double tara = 0.000;
 	
 	public Menu(IFunction func) {
 		this.func = func;
@@ -20,6 +21,9 @@ public class Menu implements IMenu, Runnable {
 	InputThread input = new InputThread(func);
 		if(func.getRM20() == true) {
 			
+			
+			
+			
 		} else if(func.getRM20() == false) {
 			try {
 				System.out.println("===========================");
@@ -30,7 +34,7 @@ public class Menu implements IMenu, Runnable {
 				input.start();
 				
 				while(true) {
-					if((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay))) {
+					if(!func.getText().equals(" ") && ((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay)))) {
 						mainDisplay = func.getText();
 						secDisplay = func.getSecText();
 						System.out.println("===========================");
@@ -39,12 +43,16 @@ public class Menu implements IMenu, Runnable {
 						System.out.println("     " + mainDisplay);
 						System.out.println(secDisplay);
 
-					} else if(func.getBrutto() != brutto) {
+					} else if(func.getBrutto() != brutto || func.getText().equals(" ") || func.getTara() != tara) {
+						mainDisplay = "";
+						func.displayMsg("");
 						brutto = func.getBrutto();
+						tara = func.getTara();
 						System.out.println("===========================");
 						System.out.println("Swag Vægt");
 						System.out.println("===========================");
-						System.out.printf("     %.3f kg \n", func.getBrutto());
+						System.out.printf("     %.3f kg \n", func.getBrutto()-func.getTara());
+						System.out.println(secDisplay);
 					}
 					
 					Thread.sleep(100);	

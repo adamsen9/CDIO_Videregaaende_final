@@ -21,5 +21,11 @@ public interface IEntity {
 	public abstract String getSecDisplay();
 	
 	public abstract void setSecDisplay(String secDisplay);
-
+	
+	public abstract String gettext1();
+	public abstract String settext1(String text);
+	public abstract String gettext2();
+	public abstract String settext2(String text);
+	public abstract String gettext3();
+	public abstract String settext3(String text);
 }

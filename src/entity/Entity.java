@@ -6,6 +6,9 @@ public class Entity implements IEntity {
 	private boolean RM20;
 	private String mainDisplay = "";
 	private String secDisplay = "";
+	private String text1 = "";
+	private String text2 = "";
+	private String text3 = "";
 		
 	public Entity() {
 		tara = 0.000;
@@ -75,5 +78,41 @@ public class Entity implements IEntity {
 
 	public void setSecDisplay(String secDisplay) {
 		this.secDisplay = secDisplay;
+	}
+
+	@Override
+	public String gettext1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String settext1(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String gettext2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String settext2(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String gettext3() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String settext3(String text) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

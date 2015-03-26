@@ -9,7 +9,6 @@ import entity.IEntity;
 public class Function implements IFunction {
 	IMenu menu;
 	IEntity data;
-	private boolean inputRunning = false;
 	
 	public Function(IEntity data) {
 		this.data = data;
@@ -42,17 +41,47 @@ public class Function implements IFunction {
 			
 		} else if (input.equals("DW")){
 			//Nulstiller tekst på vægten, viser vejeresultat igen
-			displayMsg("");
+			displayMsg(" ");
 			return "DW A";
 			
 		} else if (input.startsWith("RM20 ")){
+			engageRM20(true);
+			String split[] = input.split(" ");
+			try {
+				if(split[1].equals("4")) {
+					System.out.println(split[1]);
+				} else if(split[1].equals("8")) {
+					System.out.println(split[1]);
+				}
+			} catch(IndexOutOfBoundsException e) {
+				return "RM20 ES";
+			}
+			engageRM20(false);
+			
+			
+			
+			
+			
+			
+			
 			
 		} else if(input.startsWith("P111 ")){
 			displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
 			return "P111 A";
 		} else if(input.equals("Q")){
-
-				
+			System.out.println("Systemet lukker ned.");
+			System.exit(1);
+		} else if(input.startsWith("B ")) {
+			try {
+				if(!input.contains(".")) {
+					input += ".";
+				}
+				input += "0000";
+				changeWeight(Double.parseDouble(input.substring(2,7)));
+				return "";
+			} catch(NumberFormatException e) {
+				return "Input fejl, prøv igen";
+			}
 		}
 		return "ES";
 	}
@@ -134,12 +163,14 @@ public class Function implements IFunction {
 	public double convert(String input){
 		return Double.parseDouble(input) + 1;
 	}
+
 	@Override
-	public boolean getInputRunning(){
-		return inputRunning;
+	public double getTara() {
+		return data.getTara();
 	}
+
 	@Override
-	public void setInputRunning(boolean state){
-		inputRunning = state;
+	public void engageRM20(boolean state) {
+		data.setRM20(state);
 	}
 }

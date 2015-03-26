@@ -15,8 +15,8 @@ public class InputThread extends Thread {
 		Scanner sc = new Scanner(System.in);
 		while(true) {
 			try {
-				System.out.println("Indtast ny brutto:");
-				func.changeWeight(sc.nextDouble());
+				System.out.print("Indtast kommando:");
+				System.out.println(func.interpret(sc.nextLine()));
 				Thread.sleep(120);
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Indtast korrekt input");
