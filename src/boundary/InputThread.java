@@ -13,16 +13,17 @@ public class InputThread extends Thread {
 	
 	public void run(){
 		Scanner sc = new Scanner(System.in);
+		while(true) {
 			try {
-				while(true) {
-					System.out.println("Indtast ny brutto:");
-					func.changeWeight(sc.nextDouble());
-					System.out.println();
-				}
-			} catch (Exception e) {
+				System.out.println("Indtast ny brutto:");
+				func.changeWeight(sc.nextDouble());
+				Thread.sleep(120);
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Indtast korrekt input");
+				sc.nextLine();
+			} catch (InterruptedException e) {
 				
 			}
-		sc.close();
-		
+		}
 	}
 }

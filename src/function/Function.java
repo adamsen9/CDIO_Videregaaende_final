@@ -34,7 +34,7 @@ public class Function implements IFunction {
 		} else if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
 			return "T S";
-			//opdater menu?
+			//opdater menu - sker af sig selv
 		} else if (input.startsWith("D ")) {
 			displayMsg(input.substring(3, input.lastIndexOf("\"")));
 			return "D A";
@@ -83,7 +83,11 @@ public class Function implements IFunction {
 
 	@Override
 	public void changeWeight(double weight) {
-		data.setBrutto(weight);
+		if(weight > 6) {
+			System.out.println("Brutto må ikke overstige 6 kg");
+		} else {
+			data.setBrutto(weight);			
+		}
 	}
 	
 

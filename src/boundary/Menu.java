@@ -26,7 +26,7 @@ public class Menu implements IMenu, Runnable {
 				System.out.print("Swag Vægt      ");
 				System.out.println("");
 				System.out.println("===========================");
-				System.out.println("Brutto: " + func.getBrutto());
+				System.out.printf("     %.3f kg \n", func.getBrutto());
 				input.start();
 				
 				while(true) {
@@ -44,7 +44,7 @@ public class Menu implements IMenu, Runnable {
 						System.out.println("===========================");
 						System.out.println("Swag Vægt");
 						System.out.println("===========================");
-						System.out.println("     " + func.getBrutto() + " kg");
+						System.out.printf("     %.3f kg \n", func.getBrutto());
 					}
 					
 					Thread.sleep(100);	
