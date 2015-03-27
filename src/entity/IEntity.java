@@ -14,6 +14,9 @@ public interface IEntity {
 	
 	public abstract boolean getRM20();
 	
+	public abstract String getRM20Answer();
+	public abstract void setRM20Answer(String text);
+	
 	public abstract void setText(String text);
 	
 	public abstract String getText();

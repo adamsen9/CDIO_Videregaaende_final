@@ -10,7 +10,7 @@ import function.IFunction;
 
 public class ClientConnection implements Runnable {
 	IFunction func;
-	
+
 	private Socket client;
 	private BufferedReader in = null;
 	private PrintWriter out = null;
@@ -19,32 +19,37 @@ public class ClientConnection implements Runnable {
 		this.func = func;
 		this.client = CC;
 		try {
-			//Obtain an input stream to this client
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			//and an output stream to the same client
 			out = new PrintWriter(client.getOutputStream(), true);
 		} catch(IOException e) {
-	        System.err.println(e);
-	        return;
+			System.err.println(e);
+			return;
 		}
 	}
-	
-	
+
+
 	@Override
 	public void run() {
 		String input, response;
-		try {
-			//Loop reading lines from the client which are processed
-			while((input = in.readLine()) != null) {
-
-				System.out.println("Fik en besked:" + input);
-				response = func.interpret(input, true);
-				System.out.println("Svarer: " + response);
-				
-				out.println("Server: " + response + "\r");
+		while(true) {
+			try {
+				if (func.getRM20() && func.getRM20Answer() != "") { // svarer hvis der er indtastet et RM20 svar
+					out.println(func.getRM20Answer()+"\r");
+					func.engageRM20(false);
+					func.setRM20Answer("");
+				}
+				else {
+					input = in.readLine();
+					if (input != null) {
+//						System.out.println("Fik en besked: " + input);
+						response = func.interpret(input, true);
+//						System.out.println("Svarer: " + response);
+						out.println("Server: " + response + "\r");
+					}
+				}
+			} catch (IOException e) {
+				System.err.println(e);
 			}
-		} catch (IOException e) {
-			System.err.println(e);
 		}
 	}
 }

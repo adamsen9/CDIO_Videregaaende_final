@@ -21,38 +21,42 @@ public class Menu implements IMenu, Runnable {
 		InputThread input = new InputThread(func);
 		
 		System.out.println("===========================");
-		System.out.print("Swag Vægt      ");
-		System.out.println("");
+		System.out.println("   Mettler Vægt Simulator     ");
 		System.out.println("===========================");
-		System.out.printf("     %.3f kg \n", func.getBrutto());
+		System.out.printf("Main display:     %.3f kg \n", func.getBrutto());
+		System.out.println("Secondary display: "+ secDisplay);
+		System.out.print("Indtast kommando: ");
 		input.start();
 		
 		while (true) {
-			if(func.getRM20() == true) {
-				System.out.println("RM20 ER SGU AKTIV!!");
-				input.interrupt();
-				System.out.println(func.getSecText());
+			if(func.getRM20()) {
+//				input.interrupt();
+//				System.out.println("Svar på: "+func.getSecText());
 			}
 			else if(func.getRM20() == false) {
 					if(!func.getText().equals(" ") && ((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay)))) {
 						mainDisplay = func.getText();
 						secDisplay = func.getSecText();
+						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
 						System.out.println("===========================");
-						System.out.println("Swag Vægt");
+						System.out.println("   Mettler Vægt Simulator     ");
 						System.out.println("===========================");
-						System.out.println("     " + mainDisplay);
-						System.out.println(secDisplay);
+						System.out.println("Main display: " + mainDisplay);
+						System.out.println("Secondary display: " + secDisplay);
+						System.out.print("Indtast kommando: ");
 
 					} else if(func.getBrutto() != brutto || func.getText().equals(" ") || func.getTara() != tara) {
 						mainDisplay = "";
 						func.displayMsg("");
 						brutto = func.getBrutto();
 						tara = func.getTara();
+						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
 						System.out.println("===========================");
-						System.out.println("Swag Vægt");
+						System.out.println("   Mettler Vægt Simulator     ");
 						System.out.println("===========================");
-						System.out.printf("     %.3f kg \n", func.getBrutto()-func.getTara());
-						System.out.println(secDisplay);
+						System.out.printf("Main display:     %.3f kg \n", func.getBrutto()-func.getTara());
+						System.out.println("Secondary display: "+ secDisplay);
+						System.out.print("Indtast kommando: ");
 					}
 			}
 			try {

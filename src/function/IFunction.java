@@ -21,4 +21,6 @@ public interface IFunction {
 	double getBrutto();
 	double convert(String input);
 	public double getTara();
+	public String getRM20Answer();
+	public void setRM20Answer(String text);
 }

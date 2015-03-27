@@ -22,21 +22,25 @@ public class Function implements IFunction {
 			return "T S";
 		}
 		if (extCmd) { // Kommandoer kan kun bruges af en ekstern klient
-			if (input.equals("S")) {
+			if(getRM20()) {
+				return "RM20 mode engaged, please wait for server to answer....";
+			}
+			else if (input.equals("S")) {
 				if(getWeight() < 0) {
 					return "S S     " + String.format("%.3g",getWeight()) + " kg";
 				}
 				return "S S      " + String.format("%.3g",getWeight()) + " kg";
 
-			} else if(getRM20()) {
-				return "RM20 mode engaged, wait for closure";
-
-			} else if (input.equals("T")){ // Tar�r v�gt
+			}
+			else if (input.equals("T")){ // Tar�r v�gt
 				tareWeight();
 				return "T S";
 			} else if (input.startsWith("D ")) {
-				displayMsg(input.substring(3, input.lastIndexOf("\"")));
-				return "D A";
+				if (input.split(" ")[1].split("\"")[1].length() <= 7) {
+					displayMsg(input.substring(3, input.lastIndexOf("\"")));
+					return "D A";
+				}
+				return "ES - Message too long (max. 7 chars)";
 
 			} else if (input.equals("DW")){
 				displayMsg(" ");
@@ -53,13 +57,16 @@ public class Function implements IFunction {
 				String split[] = input.split(" ");
 				try {
 					if(split[1].equals("4")) {
-						System.out.println(split[1]);
+						data.setSecDisplay("Svar en integer på :"+split[2]);
 					} else if(split[1].equals("8")) {
-						System.out.println(split[1]);
+						data.setSecDisplay("Svar en string på: "+split[2]);
 					}
 				} catch(IndexOutOfBoundsException e) {
+					engageRM20(false);
+					data.setSecDisplay("");
 					return "RM20 ES";
 				}
+				return "RM20 mode engaged, please wait for server to answer....";
 			}
 		}
 		else { // Kun tilgængelig via vægtens lokale konsol
@@ -169,5 +176,15 @@ public class Function implements IFunction {
 	@Override
 	public void engageRM20(boolean state) {
 		data.setRM20(state);
+	}
+
+	@Override
+	public String getRM20Answer() {
+		return data.getRM20Answer();
+	}
+
+	@Override
+	public void setRM20Answer(String text) {
+		data.setRM20Answer(text);
 	}
 }

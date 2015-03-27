@@ -9,6 +9,7 @@ public class Entity implements IEntity {
 	private String text1 = "";
 	private String text2 = "";
 	private String text3 = "";
+	private String RM20Answer = "";
 		
 	public Entity() {
 		tara = 0.000;
@@ -114,5 +115,15 @@ public class Entity implements IEntity {
 	public String settext3(String text) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getRM20Answer() {
+		return RM20Answer;
+	}
+
+	@Override
+	public void setRM20Answer(String text) {
+		RM20Answer = text;
 	}
 }
