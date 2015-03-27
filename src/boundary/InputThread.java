@@ -16,7 +16,7 @@ public class InputThread extends Thread {
 		while(true) {
 			try {
 				System.out.print("Indtast kommando:");
-				System.out.println(func.interpret(sc.nextLine()));
+				System.out.println(func.interpret(sc.nextLine(), false));
 				Thread.sleep(120);
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Indtast korrekt input");

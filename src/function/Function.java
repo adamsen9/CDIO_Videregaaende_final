@@ -1,86 +1,83 @@
 package function;
 
 import boundary.IMenu;
-
-import java.math.*;
-
 import entity.IEntity;
 
 public class Function implements IFunction {
 	IMenu menu;
 	IEntity data;
-	
+
 	public Function(IEntity data) {
 		this.data = data;
 	}
-	
+
 	public void setBoundary(IMenu menu) {
 		this.menu = menu;
 	}
-	
+
 	@Override
-	public String interpret(String input) {
-		if (input.equals("S")) {
-			// send vægt tilbage (S S)
-			if(getWeight() < 0) {
-				return "S S     " + String.format("%.3g",getWeight()) + " kg";
-			}
-			return "S S      " + String.format("%.3g",getWeight()) + " kg";
-			
-		} else if(getRM20()) {
-			return "RM20 mode engaged, wait for closure";
-			
-		} else if (input.equals("T")){ // Tar�r v�gt
+	public String interpret(String input, boolean extCmd) {
+		if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
 			return "T S";
-			//opdater menu - sker af sig selv
-		} else if (input.startsWith("D ")) {
-			displayMsg(input.substring(3, input.lastIndexOf("\"")));
-			return "D A";
-//			opdater menu, vis besked...
-			
-		} else if (input.equals("DW")){
-			//Nulstiller tekst på vægten, viser vejeresultat igen
-			displayMsg(" ");
-			return "DW A";
-			
-		} else if (input.startsWith("RM20 ")){
-			engageRM20(true);
-			String split[] = input.split(" ");
-			try {
-				if(split[1].equals("4")) {
-					System.out.println(split[1]);
-				} else if(split[1].equals("8")) {
-					System.out.println(split[1]);
+		}
+		if (extCmd) { // Kommandoer kan kun bruges af en ekstern klient
+			if (input.equals("S")) {
+				if(getWeight() < 0) {
+					return "S S     " + String.format("%.3g",getWeight()) + " kg";
 				}
-			} catch(IndexOutOfBoundsException e) {
-				return "RM20 ES";
+				return "S S      " + String.format("%.3g",getWeight()) + " kg";
+
+			} else if(getRM20()) {
+				return "RM20 mode engaged, wait for closure";
+
+			} else if (input.equals("T")){ // Tar�r v�gt
+				tareWeight();
+				return "T S";
+			} else if (input.startsWith("D ")) {
+				displayMsg(input.substring(3, input.lastIndexOf("\"")));
+				return "D A";
+
+			} else if (input.equals("DW")){
+				displayMsg(" ");
+				return "DW A";
+
+			} 
+
+			else if(input.startsWith("P111 ")){
+				displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
+				return "P111 A";
 			}
-			engageRM20(false);
-			
-			
-			
-			
-			
-			
-			
-			
-		} else if(input.startsWith("P111 ")){
-			displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
-			return "P111 A";
-		} else if(input.equals("Q")){
-			System.out.println("Systemet lukker ned.");
-			System.exit(1);
-		} else if(input.startsWith("B ")) {
-			try {
-				if(!input.contains(".")) {
-					input += ".";
+			else if (input.startsWith("RM20 ")){
+				engageRM20(true);
+				String split[] = input.split(" ");
+				try {
+					if(split[1].equals("4")) {
+						System.out.println(split[1]);
+					} else if(split[1].equals("8")) {
+						System.out.println(split[1]);
+					}
+				} catch(IndexOutOfBoundsException e) {
+					return "RM20 ES";
 				}
-				input += "0000";
-				changeWeight(Double.parseDouble(input.substring(2,7)));
-				return "";
-			} catch(NumberFormatException e) {
-				return "Input fejl, prøv igen";
+			}
+		}
+		else { // Kun tilgængelig via vægtens lokale konsol
+			if (input.equals("Q")){
+				System.out.println("Systemet lukker ned.");
+				System.exit(1);
+			} 
+			else if (input.startsWith("B ")) {
+				try {
+					if(!input.contains(".")) {
+						input += ".";
+					}
+					input += "0000";
+					changeWeight(Double.parseDouble(input.substring(2,7)));
+					return "";
+				} catch(NumberFormatException e) {
+					return "Input fejl, prøv igen";
+				}
 			}
 		}
 		return "ES";
@@ -118,7 +115,7 @@ public class Function implements IFunction {
 			data.setBrutto(weight);			
 		}
 	}
-	
+
 
 	@Override
 	public void quit() {
@@ -153,12 +150,12 @@ public class Function implements IFunction {
 		// TODO Auto-generated method stub
 		return data.getSecDisplay();
 	}
-	
+
 	@Override
 	public double getBrutto(){
 		return data.getBrutto();
 	}
-	
+
 	@Override
 	public double convert(String input){
 		return Double.parseDouble(input) + 1;

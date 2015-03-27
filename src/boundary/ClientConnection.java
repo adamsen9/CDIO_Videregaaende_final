@@ -38,7 +38,7 @@ public class ClientConnection implements Runnable {
 			while((input = in.readLine()) != null) {
 
 				System.out.println("Fik en besked:" + input);
-				response = func.interpret(input);
+				response = func.interpret(input, true);
 				System.out.println("Svarer: " + response);
 				
 				out.println("Server: " + response + "\r");
