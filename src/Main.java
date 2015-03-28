@@ -1,5 +1,4 @@
 import boundary.Menu;
-import boundary.IMenu;
 import boundary.Listener;
 import entity.Entity;
 import entity.IEntity;
@@ -24,7 +23,7 @@ public class Main {
 		IEntity data = new Entity();
 		IFunction func = new Function(data);
 		Listener list = new Listener(func, listenPort);
-		IMenu menu = new Menu(func);
+		Menu menu = new Menu(func);
 		func.setBoundary(menu);
 		
 

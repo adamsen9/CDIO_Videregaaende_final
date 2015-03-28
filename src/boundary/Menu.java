@@ -2,7 +2,7 @@ package boundary;
 
 import function.IFunction;
 
-public class Menu implements IMenu, Runnable {
+public class Menu extends Thread  {
 
 
 	String mainDisplay = "";
@@ -64,7 +64,11 @@ public class Menu implements IMenu, Runnable {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			}
+			
+			finally {
+				input.interrupt();
+			}
 		}
 	}
 

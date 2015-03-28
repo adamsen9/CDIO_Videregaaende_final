@@ -1,17 +1,17 @@
 package function;
 
-import boundary.IMenu;
+import boundary.Menu;
 import entity.IEntity;
 
 public class Function implements IFunction {
-	IMenu menu;
+	Menu menu;
 	IEntity data;
 
 	public Function(IEntity data) {
 		this.data = data;
 	}
 
-	public void setBoundary(IMenu menu) {
+	public void setBoundary(Menu menu) {
 		this.menu = menu;
 	}
 
@@ -54,6 +54,11 @@ public class Function implements IFunction {
 			}
 			else if (input.startsWith("RM20 ")){
 				engageRM20(true);
+				menu.interrupt();
+				//Opret reference til sigselv
+				//Menu menu = new Menu(func);
+				
+				menu.start();
 				String split[] = input.split(" ");
 				try {
 					if(split[1].equals("4")) {

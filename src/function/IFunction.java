@@ -1,9 +1,9 @@
 package function;
 
-import boundary.IMenu;
+import boundary.Menu;
 
 public interface IFunction {
-	void setBoundary(IMenu menu);
+	void setBoundary(Menu menu);
 	String interpret(String input, boolean b);
 	String getWeightString();
 	Double getWeight();
