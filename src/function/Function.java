@@ -55,22 +55,27 @@ public class Function implements IFunction {
 			else if (input.startsWith("RM20 ")){
 				engageRM20(true);
 				menu.interrupt();
-				//Opret reference til sigselv
+				//Opret reference til sig selv
 				//Menu menu = new Menu(func);
-				
-				menu.start();
-				String split[] = input.split(" ");
 				try {
-					if(split[1].equals("4")) {
-						data.setSecDisplay("Svar en integer på :"+split[2]);
-					} else if(split[1].equals("8")) {
-						data.setSecDisplay("Svar en string på: "+split[2]);
+					String split[] = input.split(" ");
+					if(split[1].equals("4") || split[1].equals("8")) {
+						split = input.split("\"");
+						data.setSecDisplay(split[1]);
 					}
+					else {
+						engageRM20(false);
+						data.setSecDisplay("");
+						return "RM20 ES";
+					}
+					
 				} catch(IndexOutOfBoundsException e) {
 					engageRM20(false);
 					data.setSecDisplay("");
 					return "RM20 ES";
 				}
+				menu = new Menu(this);
+				menu.start();
 				return "RM20 mode engaged, please wait for server to answer....";
 			}
 		}
@@ -88,11 +93,14 @@ public class Function implements IFunction {
 					changeWeight(Double.parseDouble(input.substring(2,7)));
 					return "";
 				} catch(NumberFormatException e) {
-					return "Input fejl, prøv igen";
+					return "Input fejl, prøv igen.\nIndtast kommando:";
 				}
 			}
 		}
-		return "ES";
+		if (extCmd)
+			return "ES";
+		else
+			return "ES\nIndtast kommando:";
 	}
 
 	@Override

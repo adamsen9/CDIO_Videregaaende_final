@@ -25,15 +25,16 @@ public class Menu extends Thread  {
 		System.out.println("===========================");
 		System.out.printf("Main display:     %.3f kg \n", func.getBrutto());
 		System.out.println("Secondary display: "+ secDisplay);
-		System.out.print("Indtast kommando: ");
+		if (!func.getRM20()) System.out.print("Indtast kommando: ");
 		input.start();
 		
 		while (true) {
 			if(func.getRM20()) {
 //				input.interrupt();
+//				input = new InputThread(func);
 //				System.out.println("Svar på: "+func.getSecText());
 			}
-			else if(func.getRM20() == false) {
+			else if(!func.getRM20()) {
 					if(!func.getText().equals(" ") && ((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay)))) {
 						mainDisplay = func.getText();
 						secDisplay = func.getSecText();
@@ -62,12 +63,9 @@ public class Menu extends Thread  {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			finally {
 				input.interrupt();
+//				e.printStackTrace();
+				return;
 			}
 		}
 	}

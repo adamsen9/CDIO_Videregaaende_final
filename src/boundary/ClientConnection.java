@@ -32,13 +32,13 @@ public class ClientConnection implements Runnable {
 	public void run() {
 		String input, response;
 		while(true) {
+//			System.out.println("YUP YUP");
 			try {
-				if (func.getRM20() && func.getRM20Answer() != "") { // svarer hvis der er indtastet et RM20 svar
-					out.println(func.getRM20Answer()+"\r");
-					func.engageRM20(false);
+				if (func.getRM20Answer() != "") { // svarer hvis der er indtastet et RM20 svar
+					out.println("Svar på "+func.getSecText()+": "+func.getRM20Answer()+"\r");
 					func.setRM20Answer("");
 				}
-				else {
+				else if (in.ready()){
 					input = in.readLine();
 					if (input != null) {
 //						System.out.println("Fik en besked: " + input);
@@ -49,6 +49,12 @@ public class ClientConnection implements Runnable {
 				}
 			} catch (IOException e) {
 				System.err.println(e);
+			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

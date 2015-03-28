@@ -13,22 +13,25 @@ public class InputThread extends Thread {
 
 	public void run(){
 		Scanner sc = new Scanner(System.in);
+		String input;
 		while(true) {
 			try {
+				if (func.getRM20()) System.out.println("Svar på: "+func.getSecText()+":");
+				input = sc.nextLine();
 				if (func.getRM20()) {
-					System.out.print("Svar på RM20: ");
-					func.setRM20Answer(sc.nextLine());
+					func.setRM20Answer(input);
+					System.out.println("Satte RM20Answer til: "+func.getRM20Answer());
+					func.engageRM20(false);
 				}
 				else {
-//					System.out.print("Indtast kommando: ");
-					System.out.println(func.interpret(sc.nextLine(), false));
-					Thread.sleep(120);
+					System.out.println(func.interpret(input, false));
 				}
+				Thread.sleep(120);
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("Indtast korrekt input.");
 				sc.nextLine();
 			} catch (InterruptedException e) {
-
+				return;
 			}
 		}
 	}
