@@ -4,7 +4,6 @@ import function.IFunction;
 
 public class Menu extends Thread  {
 
-
 	String mainDisplay = "";
 	String secDisplay = "";
 	IFunction func;

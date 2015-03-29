@@ -15,6 +15,7 @@ public class InputThread extends Thread {
 		Scanner sc = new Scanner(System.in);
 		String input;
 		while(true) {
+
 			try {
 				if (func.getRM20()) System.out.println(func.getSecText()+":");
 				input = sc.nextLine();
@@ -30,7 +31,7 @@ public class InputThread extends Thread {
 				System.out.println("Indtast korrekt input.");
 				sc.nextLine();
 			} catch (InterruptedException e) {
-				sc.close();
+//				sc.close();
 				this.interrupt();
 				return;
 			}
