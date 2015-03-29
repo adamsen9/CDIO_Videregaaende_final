@@ -16,7 +16,7 @@ public class InputThread extends Thread {
 		String input;
 		while(true) {
 			try {
-				if (func.getRM20()) System.out.println("Svar på: "+func.getSecText()+":");
+				if (func.getRM20()) System.out.println(func.getSecText()+":");
 				input = sc.nextLine();
 				if (func.getRM20()) {
 					func.setRM20Answer(input);
@@ -30,6 +30,8 @@ public class InputThread extends Thread {
 				System.out.println("Indtast korrekt input.");
 				sc.nextLine();
 			} catch (InterruptedException e) {
+				sc.close();
+				this.interrupt();
 				return;
 			}
 		}

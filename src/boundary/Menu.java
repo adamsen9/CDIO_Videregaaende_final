@@ -13,7 +13,6 @@ public class Menu extends Thread  {
 
 	public Menu(IFunction func) {
 		this.func = func;
-
 	}
 
 	@Override
@@ -60,7 +59,7 @@ public class Menu extends Thread  {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				input.interrupt();
-//				e.printStackTrace();
+				this.interrupt();
 				return;
 			}
 		}
