@@ -20,6 +20,7 @@ public class Menu extends Thread  {
 	public void run() {
 		InputThread input = new InputThread(func);
 		
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("===========================");
 		System.out.println("   Mettler Vægt Simulator     ");
 		System.out.println("===========================");
@@ -38,7 +39,7 @@ public class Menu extends Thread  {
 					if(!func.getText().equals(" ") && ((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay)))) {
 						mainDisplay = func.getText();
 						secDisplay = func.getSecText();
-						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 						System.out.println("===========================");
 						System.out.println("   Mettler Vægt Simulator     ");
 						System.out.println("===========================");
@@ -51,7 +52,7 @@ public class Menu extends Thread  {
 						func.displayMsg("");
 						brutto = func.getBrutto();
 						tara = func.getTara();
-						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 						System.out.println("===========================");
 						System.out.println("   Mettler Vægt Simulator     ");
 						System.out.println("===========================");
