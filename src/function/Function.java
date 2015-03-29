@@ -49,19 +49,24 @@ public class Function implements IFunction {
 			} 
 
 			else if(input.startsWith("P111 ")){
-				displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
-				return "P111 A";
+				if (input.split(" \"")[1].length() < 30) {
+					displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
+					return "P111 A";
+				}
+				return "ES - Message too long (max. 30 chars)";
 			}
 			else if (input.startsWith("RM20 ")){
 				engageRM20(true);
 				menu.interrupt();
-				//Opret reference til sig selv
-				//Menu menu = new Menu(func);
 				try {
 					String split[] = input.split(" ");
 					if(split[1].equals("4") || split[1].equals("8")) {
 						split = input.split("\"");
-						data.setSecDisplay(split[1]);
+						if (split[1].length() < 24) data.setSecDisplay(split[1]);
+						else {
+							engageRM20(false);
+							return "ES - Message too long (max. 24 chars)";
+						}
 					}
 					else {
 						engageRM20(false);
