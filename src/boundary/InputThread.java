@@ -20,7 +20,6 @@ public class InputThread extends Thread {
 				input = sc.nextLine();
 				if (func.getRM20()) {
 					func.setRM20Answer(input);
-					System.out.println("Satte RM20Answer til: "+func.getRM20Answer());
 					func.engageRM20(false);
 				}
 				else {

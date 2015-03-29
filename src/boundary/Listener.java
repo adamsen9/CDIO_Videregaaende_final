@@ -20,7 +20,7 @@ public class Listener extends Thread {
 	    try {
 	        server = new ServerSocket(port);
 	    } catch (IOException e) {
-	        System.err.println("Kunne ikke h�re p� port: " + port + " Husk at terminere tidligere program");
+	        System.err.println("Kunne ikke lytte på port " + port + ". Husk at terminere tidligere program eller angiv anden lytte port.");
 	        System.err.println(e);
 	        System.exit(1);
 	    }

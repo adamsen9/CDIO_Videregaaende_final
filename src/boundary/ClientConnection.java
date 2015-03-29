@@ -21,6 +21,9 @@ public class ClientConnection implements Runnable {
 		try {
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			out = new PrintWriter(client.getOutputStream(), true);
+			out.println("Forbundet til Mettler Vægt Simulator.");
+			out.println("Vægtens port: "+client.getLocalPort()+". Lokal port: "+client.getPort());
+			in.skip(21);		// Skipper de første 21 chars, således at den første kommando virker
 		} catch(IOException e) {
 			System.err.println(e);
 			return;
@@ -32,7 +35,6 @@ public class ClientConnection implements Runnable {
 	public void run() {
 		String input, response;
 		while(true) {
-//			System.out.println("YUP YUP");
 			try {
 				if (func.getRM20Answer() != "") { // svarer hvis der er indtastet et RM20 svar
 					out.println("RM20 A "+func.getRM20Answer()+"\r");
@@ -41,10 +43,8 @@ public class ClientConnection implements Runnable {
 				else if (in.ready()){
 					input = in.readLine();
 					if (input != null) {
-//						System.out.println("Fik en besked: " + input);
 						response = func.interpret(input, true);
-//						System.out.println("Svarer: " + response);
-						out.println("Server: " + response + "\r");
+						out.println(response + "\r");
 					}
 				}
 			} catch (IOException e) {
