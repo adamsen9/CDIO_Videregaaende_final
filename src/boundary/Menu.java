@@ -58,7 +58,6 @@ public class Menu extends Thread  {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				input.interrupt();
-				this.interrupt();
 				return;
 			}
 		}
