@@ -35,7 +35,7 @@ public class ClientConnection implements Runnable {
 //			System.out.println("YUP YUP");
 			try {
 				if (func.getRM20Answer() != "") { // svarer hvis der er indtastet et RM20 svar
-					out.println("Svar på "+func.getSecText()+": "+func.getRM20Answer()+"\r");
+					out.println("RM20 A "+func.getRM20Answer()+"\r");
 					func.setRM20Answer("");
 				}
 				else if (in.ready()){

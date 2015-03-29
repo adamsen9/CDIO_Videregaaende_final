@@ -19,11 +19,11 @@ public class Function implements IFunction {
 	public String interpret(String input, boolean extCmd) {
 		if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
-			return "T S";
+			return "T S     " + String.format("%.3g",getTara()) + " kg";
 		}
 		if (extCmd) { // Kommandoer kan kun bruges af en ekstern klient
 			if(getRM20()) {
-				return "RM20 mode engaged, please wait for server to answer....";
+				return "RM20 I";
 			}
 			else if (input.equals("S")) {
 				if(getWeight() < 0) {
@@ -66,17 +66,17 @@ public class Function implements IFunction {
 					else {
 						engageRM20(false);
 						data.setSecDisplay("");
-						return "RM20 ES";
+						return "RM20 L";
 					}
 					
 				} catch(IndexOutOfBoundsException e) {
 					engageRM20(false);
 					data.setSecDisplay("");
-					return "RM20 ES";
+					return "RM20 L";
 				}
 				menu = new Menu(this);
 				menu.start();
-				return "RM20 mode engaged, please wait for server to answer....";
+				return "RM20 B";
 			}
 		}
 		else { // Kun tilgængelig via vægtens lokale konsol
