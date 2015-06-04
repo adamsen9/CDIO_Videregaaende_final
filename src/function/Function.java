@@ -49,9 +49,13 @@ public class Function implements IFunction {
 			} 
 
 			else if(input.startsWith("P111 ")){
-				if (input.split(" \"")[1].length() < 30) {
-					displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
-					return "P111 A";
+				try {
+					if (input.split(" \"")[1].length() < 30) {
+						displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
+						return "P111 A";
+					}
+				} catch (IndexOutOfBoundsException e) {
+					return "ES";
 				}
 				return "ES - Message too long (max. 30 chars)";
 			}
