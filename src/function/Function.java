@@ -57,12 +57,12 @@ public class Function implements IFunction {
 			}
 			else if (input.startsWith("RM20 ")){
 				engageRM20(true);
-				menu.interrupt();
 				try {
 					String split[] = input.split(" ");
 					if(split[1].equals("4") || split[1].equals("8")) {
 						split = input.split("\"");
-						if (split[1].length() < 24) data.setSecDisplay(split[1]);
+						if (split[1].length() < 24) 
+							data.setSecDisplay(split[1]);
 						else {
 							engageRM20(false);
 							return "ES - Message too long (max. 24 chars)";
@@ -79,9 +79,8 @@ public class Function implements IFunction {
 					data.setSecDisplay("");
 					return "RM20 L";
 				}
-				menu = new Menu(this);
-				menu.start();
 				return "RM20 B";
+				
 			}
 		}
 		else { // Kun tilgængelig via vægtens lokale konsol
@@ -96,7 +95,7 @@ public class Function implements IFunction {
 					}
 					input += "0000";
 					changeWeight(Double.parseDouble(input.substring(2,7)));
-					return "";
+					return "DB";
 				} catch(NumberFormatException e) {
 					return "Input fejl, prøv igen.\nIndtast kommando:";
 				}

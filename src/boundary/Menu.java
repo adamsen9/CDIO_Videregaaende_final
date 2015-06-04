@@ -16,51 +16,49 @@ public class Menu extends Thread  {
 
 	@Override
 	public void run() {
+		System.out.println("Ny menu");
 		InputThread input = new InputThread(func);
-		
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("\n\n\n");
 		System.out.println("===========================");
-		System.out.println("   Mettler Vægt Simulator     ");
+		System.out.println("   Mettler Vægt Simulator  ");
 		System.out.println("===========================");
 		System.out.printf("Primær display:     %.3f kg \n", func.getBrutto());
 		System.out.println("Sekundær display: "+ secDisplay);
-		if (!func.getRM20()) System.out.print("Indtast kommando: ");
-		input.start();
 		
-		while (true) {
-			if(!func.getRM20()) {
-					if(!func.getText().equals(" ") && ((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay)))) {
-						mainDisplay = func.getText();
-						secDisplay = func.getSecText();
-						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-						System.out.println("===========================");
-						System.out.println("   Mettler Vægt Simulator     ");
-						System.out.println("===========================");
-						System.out.println("Primær display: " + mainDisplay);
-						System.out.println("Sekundær display: " + secDisplay);
-						System.out.print("Indtast kommando: ");
-
-					} else if(func.getBrutto() != brutto || func.getText().equals(" ") || func.getTara() != tara) {
-						mainDisplay = "";
-						func.displayMsg("");
-						brutto = func.getBrutto();
-						tara = func.getTara();
-						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-						System.out.println("===========================");
-						System.out.println("   Mettler Vægt Simulator     ");
-						System.out.println("===========================");
-						System.out.printf("Primær display:     %.3f kg \n", func.getBrutto()-func.getTara());
-						System.out.println("Sekundær display: "+ secDisplay);
-						System.out.print("Indtast kommando: ");
-					}
-			}
-			try {
+		System.out.print("Indtast kommando: ");
+		
+		try {
+			input.start();
+			while (true) {
+				if(!func.getRM20()) {
+						if(!func.getText().equals(" ") && ((!func.getText().equals("") && !func.getText().equals(mainDisplay)) || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay)))) {
+							mainDisplay = func.getText();
+							secDisplay = func.getSecText();
+							System.out.println("\n\n\n");
+							System.out.println("===========================");
+							System.out.println("   Mettler Vægt Simulator     ");
+							System.out.println("===========================");
+							System.out.println("Primær display: " + mainDisplay);
+							System.out.println("Sekundær display: " + secDisplay);
+							System.out.print("Indtast kommando: ");
+						} else if(func.getBrutto() != brutto || !func.getText().equals(mainDisplay) || func.getTara() != tara || (!func.getSecText().equals("") && !func.getSecText().equals(secDisplay))) {
+							mainDisplay = "";
+							func.displayMsg("");
+							brutto = func.getBrutto();
+							tara = func.getTara();
+							System.out.println("\n\n\n");
+							System.out.println("===========================");
+							System.out.println("   Mettler Vægt Simulator  ");
+							System.out.println("===========================");
+							System.out.printf("Primær display:     %.3f kg \n", func.getBrutto()-func.getTara());
+							System.out.println("Sekundær display: "+ secDisplay);
+							System.out.print("Indtast kommando: ");
+						}
+				} 
 				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				input.interrupt();
-				return;
 			}
+		} catch (InterruptedException e) {
+			System.out.println("God historie 1");
 		}
 	}
-
 }

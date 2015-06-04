@@ -31,7 +31,7 @@ public class InputThread extends Thread {
 				System.out.println("Indtast korrekt input.");
 				sc.nextLine();
 			} catch (InterruptedException e) {
-				return;
+				System.out.println("God historie 3");
 			}
 		}
 	}
