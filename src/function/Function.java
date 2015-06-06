@@ -17,6 +17,7 @@ public class Function implements IFunction {
 
 	@Override
 	public String interpret(String input, boolean extCmd) {
+//		System.out.println("Modtog: "+input);
 		if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
 			return "T S     " + String.format("%.3g",getTara()) + " kg";

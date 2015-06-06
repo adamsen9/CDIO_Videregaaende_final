@@ -23,7 +23,7 @@ public class ClientConnection implements Runnable {
 			out = new PrintWriter(client.getOutputStream(), true);
 			out.println("Forbundet til Mettler Vægt Simulator.");
 			out.println("Vægtens port: "+client.getLocalPort()+". Lokal port: "+client.getPort());
-			in.skip(21);		// Skipper de første 21 chars, således at den første kommando virker
+			//in.skip(21);		// Skipper de første 21 chars, således at den første kommando virker
 		} catch(IOException e) {
 			System.err.println(e);
 			return;
