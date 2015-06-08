@@ -31,4 +31,7 @@ public interface IEntity {
 	public abstract String settext2(String text);
 	public abstract String gettext3();
 	public abstract String settext3(String text);
+	
+	public abstract void storeDisplay();
+	public abstract void restoreDisplay();
 }

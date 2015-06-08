@@ -51,7 +51,9 @@ public class Function implements IFunction {
 
 			else if(input.startsWith("P111 ")){
 				try {
-					if (input.split(" \"")[1].length() < 30) {
+					if(input.split(" \"")[1].length() < 30) {
+						
+					} else if (input.split(" \"")[1].length() < 30) {
 						displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
 						return "P111 A";
 					}
@@ -63,23 +65,27 @@ public class Function implements IFunction {
 			else if (input.startsWith("RM20 ")){
 				engageRM20(true);
 				try {
+					storeDisplay();
 					String split[] = input.split(" ");
 					if(split[1].equals("4") || split[1].equals("8")) {
 						split = input.split("\"");
-						if (split[1].length() < 24) 
+						if (split[1].length() < 24)
 							data.setSecDisplay(split[1]);
 						else {
+							restoreDisplay();
 							engageRM20(false);
 							return "ES - Message too long (max. 24 chars)";
 						}
 					}
 					else {
+						restoreDisplay();
 						engageRM20(false);
 						data.setSecDisplay("");
 						return "RM20 L";
 					}
 					
 				} catch(IndexOutOfBoundsException e) {
+					restoreDisplay();
 					engageRM20(false);
 					data.setSecDisplay("");
 					return "RM20 L";
@@ -208,5 +214,16 @@ public class Function implements IFunction {
 	@Override
 	public void setRM20Answer(String text) {
 		data.setRM20Answer(text);
+	}
+
+	@Override
+	public void storeDisplay() {
+		data.storeDisplay();
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void restoreDisplay() {
+		data.restoreDisplay();
 	}
 }

@@ -23,4 +23,6 @@ public interface IFunction {
 	public double getTara();
 	public String getRM20Answer();
 	public void setRM20Answer(String text);
+	public void storeDisplay();
+	public void restoreDisplay();
 }

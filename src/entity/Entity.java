@@ -10,6 +10,8 @@ public class Entity implements IEntity {
 	private String text2 = "";
 	private String text3 = "";
 	private String RM20Answer = "";
+	private String storedSecDisplay = "";
+	private String storedPrimDisplay = "";
 		
 	public Entity() {
 		tara = 0.000;
@@ -126,4 +128,21 @@ public class Entity implements IEntity {
 	public void setRM20Answer(String text) {
 		RM20Answer = text;
 	}
+
+	@Override
+	public void storeDisplay() {
+		System.out.println("Gemmer " + mainDisplay + " og " + secDisplay);
+		// TODO Auto-generated method stub
+		storedPrimDisplay = mainDisplay;
+		storedSecDisplay = secDisplay;
+	}
+
+	@Override
+	public void restoreDisplay() {
+		System.out.println("Genopretter " + storedPrimDisplay + " og " + storedSecDisplay);
+		mainDisplay = storedPrimDisplay;
+		secDisplay = storedSecDisplay;
+		// TODO Auto-generated method stub
+	}
+
 }
