@@ -37,9 +37,13 @@ public class Function implements IFunction {
 				tareWeight();
 				return "T S";
 			} else if (input.startsWith("D ")) {
-				if (input.split(" ")[1].split("\"")[1].length() <= 7) {
-					displayMsg(input.substring(3, input.lastIndexOf("\"")));
-					return "D A";
+				try{
+					if (input.split(" ")[1].split("\"")[1].length() <= 7) {
+						displayMsg(input.substring(3, input.lastIndexOf("\"")));
+						return "D A";
+					}
+				}catch (IndexOutOfBoundsException e){
+					return	"ES";
 				}
 				return "ES - Message too long (max. 7 chars)";
 
@@ -51,9 +55,7 @@ public class Function implements IFunction {
 
 			else if(input.startsWith("P111 ")){
 				try {
-					if(input.split(" \"")[1].length() < 30) {
-						
-					} else if (input.split(" \"")[1].length() < 30) {
+					if (input.split(" \"")[1].length() < 30) {
 						displaySecMsg(input.substring(6, input.lastIndexOf("\"")));
 						return "P111 A";
 					}
