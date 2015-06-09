@@ -131,7 +131,6 @@ public class Entity implements IEntity {
 
 	@Override
 	public void storeDisplay() {
-		System.out.println("Gemmer " + mainDisplay + " og " + secDisplay);
 		// TODO Auto-generated method stub
 		storedPrimDisplay = mainDisplay;
 		storedSecDisplay = secDisplay;
@@ -139,7 +138,6 @@ public class Entity implements IEntity {
 
 	@Override
 	public void restoreDisplay() {
-		System.out.println("Genopretter " + storedPrimDisplay + " og " + storedSecDisplay);
 		mainDisplay = storedPrimDisplay;
 		secDisplay = storedSecDisplay;
 		// TODO Auto-generated method stub
