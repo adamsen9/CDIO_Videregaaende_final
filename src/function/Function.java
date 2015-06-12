@@ -20,7 +20,7 @@ public class Function implements IFunction {
 //		System.out.println("Modtog: "+input);
 		if (input.equals("T")){ // Tar�r v�gt
 			tareWeight();
-			return "T S     " + String.format("%.3g",getTara()) + " kg";
+			return "T S     " + String.format("%.3f",getTara()) + " kg";
 		}
 		if (extCmd) { // Kommandoer kan kun bruges af en ekstern klient
 			if(getRM20()) {
@@ -28,9 +28,9 @@ public class Function implements IFunction {
 			}
 			else if (input.equals("S")) {
 				if(getWeight() < 0) {
-					return "S S     " + String.format("%.3g",getWeight()) + " kg";
+					return "S S     " + String.format("%.3f",getWeight()) + " kg";
 				}
-				return "S S      " + String.format("%.3g",getWeight()) + " kg";
+				return "S S      " + String.format("%.3f",getWeight()) + " kg";
 
 			}
 			else if (input.equals("T")){ // Tar�r v�gt
