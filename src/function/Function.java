@@ -22,6 +22,18 @@ public class Function implements IFunction {
 			tareWeight();
 			return "T S     " + String.format("%.3f",getTara()) + " kg";
 		}
+		else if (input.startsWith("B ")) {
+			try {
+				if(!input.contains(".")) {
+					input += ".";
+				}
+				input += "0000";
+				changeWeight(Double.parseDouble(input.substring(2,7)));
+				return "DB";
+			} catch(NumberFormatException e) {
+				return "Input fejl, prøv igen.\nIndtast kommando:";
+			}
+		}
 		if (extCmd) { // Kommandoer kan kun bruges af en ekstern klient
 			if(getRM20()) {
 				return "RM20 I";
@@ -101,18 +113,6 @@ public class Function implements IFunction {
 				System.out.println("Systemet lukker ned.");
 				System.exit(1);
 			} 
-			else if (input.startsWith("B ")) {
-				try {
-					if(!input.contains(".")) {
-						input += ".";
-					}
-					input += "0000";
-					changeWeight(Double.parseDouble(input.substring(2,7)));
-					return "DB";
-				} catch(NumberFormatException e) {
-					return "Input fejl, prøv igen.\nIndtast kommando:";
-				}
-			}
 		}
 		if (extCmd)
 			return "ES";
