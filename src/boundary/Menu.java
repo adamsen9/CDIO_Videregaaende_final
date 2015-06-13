@@ -86,7 +86,6 @@ public class Menu extends Thread  {
 					} 
 				} else {
 					if(displayrm20 == false) {
-						System.out.println("Marco 5");
 						mainDisplay = func.getText();
 						secDisplay = func.getSecText();
 						System.out.println("\n\n\n");
